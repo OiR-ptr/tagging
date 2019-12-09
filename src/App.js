@@ -12,6 +12,17 @@ class App extends Component {
   }
 
   componentDidMount() {
+    fetch('bookmarks.json').then( response => {
+      console.log(response);
+      return response.json();
+    }).then( jsonResponse => {
+      console.warn(jsonResponse);
+    }).catch((err) => {
+      console.error(err);
+      console.error("I seem something wrong.");
+    });
+
+    
     // const url = 'https://sutaba-mac.site/scrapy-s2-settings-and-items/';
     // const url = 'http://howtonode.org/really-simple-file-uploads';
     // const url = 'https://ameblo.jp/nakagawa-shoko/';
@@ -54,6 +65,7 @@ class App extends Component {
           </a>
         </header>
         <div>{this.state.article}</div>
+        <span id="export-link"></span>
       </div>
     );
   }
