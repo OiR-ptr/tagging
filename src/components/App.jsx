@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from '../logo.svg';
 import './App.css';
 
 class App extends Component {
@@ -48,6 +48,7 @@ class App extends Component {
   }
 
   render() {
+    const { article } = this.state;
     return (
       <div className="App">
         <header className="App-header">
@@ -64,11 +65,12 @@ class App extends Component {
             Learn React
           </a>
         </header>
-        <div>{this.state.article}</div>
-        <span id="export-link"></span>
+        <div>{article}</div>
+        <span id="export-link" />
       </div>
     );
   }
 }
 
 export default App;
+
