@@ -27,30 +27,6 @@ class App extends Component {
       console.error(err);
       console.error("I seem something wrong.");
     });
-
-    
-    // const url = 'https://sutaba-mac.site/scrapy-s2-settings-and-items/';
-    // const url = 'http://howtonode.org/really-simple-file-uploads';
-    // const url = 'https://ameblo.jp/nakagawa-shoko/';
-    
-    // var scrape = require("ascrape");
-
-    // scrape(url, (err, article, meta) => {
-      
-
-    //   console.error(err);
-    //   console.error(article);
-    //   console.error(meta);
-      
-    //   console.log(article.title);
-    //   console.log(article.content);
-
-    //   console.log(article.content.text());
-
-    //   this.setState({
-    //     article: article.content.text(),
-    //   });
-    // });
   }
 
   render() {
