@@ -1,10 +1,10 @@
 /* eslint-disable */
 
 import React from 'react';
-import { createBrowserHistory } from 'history';
+import { createMemoryHistory } from 'history';
 import { combineReducers, applyMiddleware, compose, createStore } from 'redux';
 import { connectRouter, routerMiddleware, ConnectedRouter } from 'connected-react-router';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { MemoryRouter as Router, Switch, Route } from 'react-router-dom';
 
 import App from '../components/App';
 import { Provider } from 'react-redux';
@@ -14,7 +14,7 @@ const createRootReducer = (history) => combineReducers({
     // rest of your reducers
 });
 
-const history = createBrowserHistory();
+const history = createMemoryHistory();
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
