@@ -9,9 +9,8 @@ import {
   ConnectedRouter
 } from "connected-react-router";
 import { MemoryRouter as Router, Switch, Route } from "react-router-dom";
-
-import App from "../components/App";
 import { Provider } from "react-redux";
+import SearchScreen from "../components/SearchScreen";
 
 const createRootReducer = history =>
   combineReducers({
@@ -46,7 +45,7 @@ const entry = () => {
         <Router>
           <Switch>
             <Route path="/" exact>
-              <App />
+              <SearchScreen />
             </Route>
             <Route path="/about">
               <div>A happy new year!!</div>
