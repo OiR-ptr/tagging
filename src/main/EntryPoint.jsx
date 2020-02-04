@@ -8,9 +8,10 @@ import {
   routerMiddleware,
   ConnectedRouter
 } from "connected-react-router";
-import { MemoryRouter as Router, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import SearchScreen from "../components/SearchScreen";
+import ApplicationNav from "../containers/ApplicationNavContainer";
 
 const createRootReducer = history =>
   combineReducers({
@@ -42,17 +43,16 @@ const entry = () => {
   return (
     <Provider store={store}>
       <ConnectedRouter history={history}>
-        <Router>
-          <Switch>
-            <Route path="/" exact>
-              <SearchScreen />
-            </Route>
-            <Route path="/about">
-              <div>A happy new year!!</div>
-            </Route>
-          </Switch>
-        </Router>
+        <Switch>
+          <Route path="/" exact>
+            <SearchScreen />
+          </Route>
+          <Route path="/about" exact>
+            <div>A happy new year!!</div>
+          </Route>
+        </Switch>
       </ConnectedRouter>
+      <ApplicationNav />
     </Provider>
   );
 };

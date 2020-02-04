@@ -9,7 +9,7 @@ import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
 import "./test.css";
 
-export default () => {
+const SearchScreen = () => {
   return (
     <Paper>
       <Box>
@@ -31,3 +31,5 @@ export default () => {
     </Paper>
   );
 };
+
+export default SearchScreen;
