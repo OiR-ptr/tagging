@@ -7,7 +7,6 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import FindInPage from "@material-ui/icons/FindInPage";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
-import "./test.css";
 
 const SearchScreen = () => {
   return (
@@ -16,7 +15,6 @@ const SearchScreen = () => {
         <FormControl variant="outlined">
           <InputLabel htmlFor="test">Search for bookmarks</InputLabel>
           <Input
-            id="test"
             type="search"
             startAdornment={
               <InputAdornment position="start">

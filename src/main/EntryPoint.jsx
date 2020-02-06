@@ -45,10 +45,19 @@ const entry = () => {
       <ConnectedRouter history={history}>
         <Switch>
           <Route path="/" exact>
-            <SearchScreen />
+            <div style={{ minWidth: 340 }}>
+              <SearchScreen />
+            </div>
           </Route>
-          <Route path="/about" exact>
-            <div>A happy new year!!</div>
+          <Route path="/search">
+            <div id="aaa" style={{ minWidth: 340 }}>
+              search
+            </div>
+          </Route>
+          <Route path="/bookmarks">
+            <div id="ttt" style={{ minWidth: 340 }}>
+              bookmarks
+            </div>
           </Route>
         </Switch>
       </ConnectedRouter>

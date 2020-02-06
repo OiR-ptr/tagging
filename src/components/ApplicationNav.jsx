@@ -12,13 +12,21 @@ const ApplicationNav = props => {
     <BottomNavigation
       showLabels
       value={value}
-      onChange={(event, newValue) => {
+      onChange={(_, newValue) => {
         props.changeNavigation(newValue);
       }}
     >
-      <BottomNavigationAction label="Search" icon={<Search />} />
-      <BottomNavigationAction label="Result" icon={<ListIcon />} />
-      <BottomNavigationAction label="Bookmark" icon={<StarBorder />} />
+      <BottomNavigationAction label="Search" icon={<Search />} value="/" />
+      <BottomNavigationAction
+        label="Result"
+        icon={<ListIcon />}
+        value="/search"
+      />
+      <BottomNavigationAction
+        label="Bookmark"
+        icon={<StarBorder />}
+        value="/bookmarks"
+      />
     </BottomNavigation>
   );
 };
