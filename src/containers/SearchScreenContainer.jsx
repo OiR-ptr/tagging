@@ -6,13 +6,13 @@ import {
   searchForBookmarksEvent
 } from "../actions/BookmarkActions";
 
-export function mapStateToProps(state) {
+function mapStateToProps(state) {
   return {
     bookmarks: state.bookmark.bookmarks
   };
 }
 
-export function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     loadBookmarks() {
       if (chrome && chrome.bookmarks) {
