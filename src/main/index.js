@@ -1,4 +1,3 @@
-// eslint-disable
 import ReactDOM from "react-dom";
 import entry from "./EntryPoint";
 

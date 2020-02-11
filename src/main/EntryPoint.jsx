@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import React from "react";
 import { createMemoryHistory } from "history";
 import { combineReducers, applyMiddleware, compose, createStore } from "redux";
@@ -10,7 +8,7 @@ import {
 } from "connected-react-router";
 import { Switch, Route } from "react-router-dom";
 import { Provider } from "react-redux";
-import SearchScreen from "../components/SearchScreen";
+import SearchScreen from "../containers/SearchScreenContainer";
 import ApplicationNav from "../containers/ApplicationNavContainer";
 
 const createRootReducer = history =>

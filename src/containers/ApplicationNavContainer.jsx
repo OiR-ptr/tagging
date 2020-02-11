@@ -2,8 +2,10 @@ import { connect } from "react-redux";
 import { push } from "connected-react-router";
 import ApplicationNav from "../components/ApplicationNav";
 
-function mapStateToProps() {
-  return {};
+function mapStateToProps(state) {
+  return {
+    nowAddress: state.router.location.pathname
+  };
 }
 
 function mapDispatchToProps(dispatch) {

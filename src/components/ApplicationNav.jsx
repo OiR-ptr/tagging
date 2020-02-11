@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import { BottomNavigationAction } from "@material-ui/core";
 import Search from "@material-ui/icons/Search";
@@ -6,14 +7,14 @@ import StarBorder from "@material-ui/icons/StarBorder";
 import ListIcon from "@material-ui/icons/List";
 
 const ApplicationNav = props => {
-  const [value] = React.useState(0);
+  const { nowAddress, changeNavigation } = props;
 
   return (
     <BottomNavigation
       showLabels
-      value={value}
+      value={nowAddress}
       onChange={(_, newValue) => {
-        props.changeNavigation(newValue);
+        changeNavigation(newValue);
       }}
     >
       <BottomNavigationAction label="Search" icon={<Search />} value="/" />
@@ -29,6 +30,11 @@ const ApplicationNav = props => {
       />
     </BottomNavigation>
   );
+};
+
+ApplicationNav.propTypes = {
+  nowAddress: PropTypes.string.isRequired,
+  changeNavigation: PropTypes.func.isRequired
 };
 
 export default ApplicationNav;
