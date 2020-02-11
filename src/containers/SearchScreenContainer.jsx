@@ -6,9 +6,9 @@ import {
   searchForBookmarksEvent
 } from "../actions/BookmarkActions";
 
-export function mapStateToProps() {
+export function mapStateToProps(state) {
   return {
-    bookmarks: {}
+    bookmarks: state.bookmark.bookmarks
   };
 }
 

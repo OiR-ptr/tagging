@@ -8,13 +8,14 @@ import {
 } from "connected-react-router";
 import { Switch, Route } from "react-router-dom";
 import { Provider } from "react-redux";
+import bookmarkReducer from "../reducers/BookmarkReducers";
 import SearchScreen from "../containers/SearchScreenContainer";
 import ApplicationNav from "../containers/ApplicationNavContainer";
 
 const createRootReducer = history =>
   combineReducers({
-    router: connectRouter(history)
-    // rest of your reducers
+    router: connectRouter(history),
+    bookmark: bookmarkReducer
   });
 
 const history = createMemoryHistory();
