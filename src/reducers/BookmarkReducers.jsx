@@ -4,19 +4,22 @@ import {
 } from "../actions/BookmarkActions";
 
 const initialState = {
-  bookmarks: {},
+  bookmarks: [],
+  treeable: {},
+  searchWord: "",
   hitList: []
 };
 
 export default function bookmarkReducer(state = initialState, action) {
   switch (action.type) {
     case LOADED_BOOKMARKS: {
-      const { bookmarks } = action;
-      return { ...state, bookmarks };
+      const { bookmarks, treeable } = action;
+      return { ...state, bookmarks, treeable };
     }
 
     case SEARCH_FOR_BOOKMARKS: {
-      return { ...state };
+      const { searchWord, hitList } = action;
+      return { ...state, searchWord, hitList };
     }
 
     default:

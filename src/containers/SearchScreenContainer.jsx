@@ -37,6 +37,10 @@ export function mapDispatchToProps(dispatch) {
     searchForBookmark(bookmarks, searchText) {
       dispatch(searchForBookmarksEvent(bookmarks, searchText));
       dispatch(push("/search"));
+    },
+    // eslint-disable-next-line
+    searchForTag(bookmarks, searchText) {
+      dispatch(push("/search"));
     }
   };
 }

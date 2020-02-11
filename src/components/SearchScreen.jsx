@@ -71,7 +71,8 @@ const SearchScreen = props => {
 };
 
 SearchScreen.propTypes = {
-  bookmarks: PropTypes.objectOf(PropTypes.string).isRequired,
+  // eslint-disable-next-line
+  bookmarks: PropTypes.any.isRequired,
   loadBookmarks: PropTypes.func.isRequired,
   searchForBookmark: PropTypes.func.isRequired
 };
