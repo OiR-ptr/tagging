@@ -10,6 +10,7 @@ import { Switch, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import bookmarkReducer from "../reducers/BookmarkReducers";
 import SearchScreen from "../containers/SearchScreenContainer";
+import SearchResultScreen from "../containers/SearchResultScreenContainer";
 import ApplicationNav from "../containers/ApplicationNavContainer";
 
 const createRootReducer = history =>
@@ -50,7 +51,7 @@ const entry = () => {
           </Route>
           <Route path="/search">
             <div id="aaa" style={{ minWidth: 340 }}>
-              search
+              <SearchResultScreen />
             </div>
           </Route>
           <Route path="/bookmarks">

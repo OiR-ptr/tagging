@@ -17,7 +17,6 @@ function mapDispatchToProps(dispatch) {
     loadBookmarks() {
       if (chrome && chrome.bookmarks) {
         chrome.bookmarks.getTree(bookmarks => {
-          console.log(bookmarks);
           dispatch(loadedBookmarksEvent(bookmarks));
         });
       } else {

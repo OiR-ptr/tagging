@@ -2,10 +2,12 @@ import { connect } from "react-redux";
 import SearchResultScreen from "../components/SearchResultScreen";
 
 function mapStateToProps(state) {
-  return {};
+  return {
+    hitList: state.bookmark.hitList
+  };
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps() {
   return {};
 }
 

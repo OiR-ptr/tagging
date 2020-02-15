@@ -11,13 +11,13 @@ import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Search from "@material-ui/icons/Search";
 
-const SearchScreen = props => {
+const SearchScreen = ({ bookmarks, loadBookmarks, searchForBookmark }) => {
   const [searchText, setSearchText] = React.useState("");
   const [whereToSearch, setWhereToSearch] = React.useState("Bookmarks");
 
   useEffect(() => {
-    props.loadBookmarks();
-  }, [null]);
+    loadBookmarks();
+  }, [loadBookmarks]);
 
   return (
     <Paper>
@@ -60,7 +60,7 @@ const SearchScreen = props => {
         variant="outlined"
         onClick={() => {
           if (whereToSearch === "Bookmarks") {
-            props.searchForBookmark(props.bookmarks, searchText);
+            searchForBookmark(bookmarks, searchText);
           }
         }}
       >
