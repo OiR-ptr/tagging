@@ -1,24 +1,37 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Divider from "@material-ui/core/Divider";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
+import { ListSubheader } from "@material-ui/core";
 
 function ListItemLink(properties) {
   // eslint-disable-next-line react/jsx-props-no-spreading
   return <ListItem button component="a" {...properties} />;
 }
 
+const updateTab = url => {
+  if (chrome.tabs) {
+    chrome.tabs.update({ url }, tab => {
+      console.log(tab);
+    });
+  } else {
+    console.log(url);
+  }
+};
+
 const SearchResultScreen = ({ hitList }) => {
   const [links, setLinks] = React.useState([]);
 
   React.useEffect(() => {
     const results = hitList.map(item => {
-      console.log(item);
       return (
-        <ListItemLink href="https://www.google.co.jp/" key={item.id}>
-          <ListItemText primary="SPAM" />
+        <ListItemLink
+          href={item.url}
+          key={item.id}
+          onClick={() => updateTab(item.url)}
+        >
+          <ListItemText primary={item.title} secondary="nantekotoda" />
         </ListItemLink>
       );
     });
@@ -26,11 +39,10 @@ const SearchResultScreen = ({ hitList }) => {
   }, [hitList]);
 
   return (
-    <List component="nav" aria-label="main mailbox folders">
-      <ListItem button>
-        <ListItemText primary="Trash" />
-      </ListItem>
-      <Divider />
+    <List
+      component="nav"
+      subheader={<ListSubheader component="div">Title</ListSubheader>}
+    >
       {links}
     </List>
   );

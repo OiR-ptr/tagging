@@ -25,11 +25,7 @@ function mapDispatchToProps(dispatch) {
             return res.json();
           })
           .then(json => {
-            console.log(json);
             dispatch(loadedBookmarksEvent(json));
-          })
-          .catch(ex => {
-            console.error(`what the fuck...${ex}`);
           });
       }
     },

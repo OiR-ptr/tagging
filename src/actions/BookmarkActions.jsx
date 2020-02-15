@@ -31,8 +31,6 @@ export function searchForBookmarksEvent(bookmarks, searchWord) {
     return undefined;
   });
 
-  console.log(searched);
-
   return {
     type: SEARCH_FOR_BOOKMARKS,
     searchWord,
