@@ -8,6 +8,7 @@ import {
 } from "connected-react-router";
 import { Switch, Route } from "react-router-dom";
 import { Provider } from "react-redux";
+import persistentify from "redux-localstorage";
 import bookmarkReducer from "../reducers/BookmarkReducers";
 import SearchScreen from "../containers/SearchScreenContainer";
 import SearchResultScreen from "../containers/SearchResultScreenContainer";
@@ -28,10 +29,8 @@ const configureStore = preloadedState => {
     createRootReducer(history),
     preloadedState,
     composeEnhancers(
-      applyMiddleware(
-        routerMiddleware(history)
-        // other middlewares
-      )
+      applyMiddleware(routerMiddleware(history)),
+      persistentify()
     )
   );
   return store;
