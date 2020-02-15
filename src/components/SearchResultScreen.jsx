@@ -20,8 +20,9 @@ const updateTab = url => {
   }
 };
 
-const SearchResultScreen = ({ hitList }) => {
+const SearchResultScreen = ({ hitList, searchWord }) => {
   const [links, setLinks] = React.useState([]);
+  const [subheader, setSubheader] = React.useState("none");
 
   React.useEffect(() => {
     const results = hitList.map(item => {
@@ -38,10 +39,16 @@ const SearchResultScreen = ({ hitList }) => {
     setLinks(results);
   }, [hitList]);
 
+  React.useEffect(() => {
+    if (hitList.length !== 0 || searchWord) {
+      setSubheader(`search: '${searchWord}' ${hitList.length}件`);
+    }
+  }, [hitList, searchWord]);
+
   return (
     <List
       component="nav"
-      subheader={<ListSubheader component="div">Title</ListSubheader>}
+      subheader={<ListSubheader component="div">{subheader}</ListSubheader>}
     >
       {links}
     </List>
@@ -57,7 +64,8 @@ SearchResultScreen.propTypes = {
       parentId: PropTypes.string,
       title: PropTypes.string.isRequired
     })
-  ).isRequired
+  ).isRequired,
+  searchWord: PropTypes.string.isRequired
 };
 
 export default SearchResultScreen;

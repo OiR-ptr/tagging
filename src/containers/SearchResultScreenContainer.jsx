@@ -3,7 +3,8 @@ import SearchResultScreen from "../components/SearchResultScreen";
 
 function mapStateToProps(state) {
   return {
-    hitList: state.bookmark.hitList
+    hitList: state.bookmark.hitList,
+    searchWord: state.bookmark.searchWord
   };
 }
 
