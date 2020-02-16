@@ -1,9 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Pagination from "@material-ui/lab/Pagination";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import { ListSubheader } from "@material-ui/core";
+import ListSubheader from "@material-ui/core/ListSubheader";
+import { Typography } from "@material-ui/core";
 
 function ListItemLink(properties) {
   // eslint-disable-next-line react/jsx-props-no-spreading
@@ -12,17 +14,16 @@ function ListItemLink(properties) {
 
 const updateTab = url => {
   if (chrome.tabs) {
-    chrome.tabs.update({ url }, tab => {
-      console.log(tab);
-    });
-  } else {
-    console.log(url);
+    chrome.tabs.update({ url });
   }
 };
 
 const SearchResultScreen = ({ hitList, searchWord }) => {
   const [links, setLinks] = React.useState([]);
-  const [subheader, setSubheader] = React.useState("none");
+  const [subheader, setSubheader] = React.useState(
+    <Typography>none</Typography>
+  );
+  // const [page, setPage] = React.useState(0);
 
   React.useEffect(() => {
     const results = hitList.map(item => {
@@ -41,17 +42,29 @@ const SearchResultScreen = ({ hitList, searchWord }) => {
 
   React.useEffect(() => {
     if (hitList.length !== 0 || searchWord) {
-      setSubheader(`search: '${searchWord}' ${hitList.length}件`);
+      setSubheader(
+        <Typography>
+          search: {searchWord} {hitList.length}件
+        </Typography>
+      );
     }
   }, [hitList, searchWord]);
 
   return (
-    <List
-      component="nav"
-      subheader={<ListSubheader component="div">{subheader}</ListSubheader>}
-    >
-      {links}
-    </List>
+    <>
+      <Pagination
+        count={10}
+        color="primary"
+        variant="outlined"
+        shape="rounded"
+      />
+      <List
+        component="nav"
+        subheader={<ListSubheader component="div">{subheader}</ListSubheader>}
+      >
+        {links}
+      </List>
+    </>
   );
 };
 
