@@ -1,5 +1,4 @@
-import ReactDOM from 'react-dom';
-import './index.css';
-import entry from './EntryPoint';
+import ReactDOM from "react-dom";
+import entry from "./EntryPoint";
 
-ReactDOM.render(entry(), document.getElementById('root'));
+ReactDOM.render(entry(), document.getElementById("root"));
