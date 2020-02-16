@@ -1,5 +1,6 @@
 export const LOADED_BOOKMARKS = "LOADED_BOOKMARKS";
 export const SEARCH_FOR_BOOKMARKS = "SEARCH_FOR_BOOKMARKS";
+export const SET_PAGE_NUMBER = "SET_PAGE_NUMBER";
 
 function expandBookmarks(bookmarks) {
   const reduced = bookmarks.reduce((previousValue, value) => {
@@ -35,5 +36,12 @@ export function searchForBookmarksEvent(bookmarks, searchWord) {
     type: SEARCH_FOR_BOOKMARKS,
     searchWord,
     hitList: searched
+  };
+}
+
+export function setPageNumberEvent(pageNum) {
+  return {
+    type: SET_PAGE_NUMBER,
+    pageNum
   };
 }

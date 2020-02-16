@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import Paper from "@material-ui/core/Paper";
 import FormControl from "@material-ui/core/FormControl";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
@@ -20,7 +19,7 @@ const SearchScreen = ({ bookmarks, loadBookmarks, searchForBookmark }) => {
   }, [loadBookmarks]);
 
   return (
-    <Paper>
+    <>
       <Box>
         <TextField
           fullWidth
@@ -66,7 +65,7 @@ const SearchScreen = ({ bookmarks, loadBookmarks, searchForBookmark }) => {
       >
         検索
       </Button>
-    </Paper>
+    </>
   );
 };
 

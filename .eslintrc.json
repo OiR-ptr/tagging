@@ -23,5 +23,7 @@
     "sourceType": "module"
   },
   "plugins": ["jsx-a11y", "prettier"],
-  "rules": {}
+  "rules": {
+    "no-debugger": "warn"
+  }
 }

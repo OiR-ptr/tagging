@@ -1,13 +1,16 @@
 import {
   LOADED_BOOKMARKS,
-  SEARCH_FOR_BOOKMARKS
+  SEARCH_FOR_BOOKMARKS,
+  SET_PAGE_NUMBER
 } from "../actions/BookmarkActions";
 
 const initialState = {
   bookmarks: [],
   treeable: {},
   searchWord: "",
-  hitList: []
+  hitList: [],
+  pageNum: 1,
+  contentsPerPage: 6
 };
 
 export default function bookmarkReducer(state = initialState, action) {
@@ -20,6 +23,11 @@ export default function bookmarkReducer(state = initialState, action) {
     case SEARCH_FOR_BOOKMARKS: {
       const { searchWord, hitList } = action;
       return { ...state, searchWord, hitList };
+    }
+
+    case SET_PAGE_NUMBER: {
+      const { pageNum } = action;
+      return { ...state, pageNum };
     }
 
     default:

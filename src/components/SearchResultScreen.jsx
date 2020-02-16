@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Pagination from "@material-ui/lab/Pagination";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListSubheader from "@material-ui/core/ListSubheader";
 import { Typography } from "@material-ui/core";
+import ListPagination from "../containers/ListPaginationContainer";
 
 function ListItemLink(properties) {
   // eslint-disable-next-line react/jsx-props-no-spreading
@@ -18,15 +18,14 @@ const updateTab = url => {
   }
 };
 
-const SearchResultScreen = ({ hitList, searchWord }) => {
+const SearchResultScreen = ({ pageContents, hitLength, searchWord }) => {
   const [links, setLinks] = React.useState([]);
   const [subheader, setSubheader] = React.useState(
     <Typography>none</Typography>
   );
-  // const [page, setPage] = React.useState(0);
 
   React.useEffect(() => {
-    const results = hitList.map(item => {
+    const results = pageContents.map(item => {
       return (
         <ListItemLink
           href={item.url}
@@ -38,29 +37,25 @@ const SearchResultScreen = ({ hitList, searchWord }) => {
       );
     });
     setLinks(results);
-  }, [hitList]);
+  }, [pageContents]);
 
   React.useEffect(() => {
-    if (hitList.length !== 0 || searchWord) {
+    if (hitLength !== 0 || searchWord) {
       setSubheader(
         <Typography>
-          search: {searchWord} {hitList.length}件
+          search: {searchWord} {hitLength}件
         </Typography>
       );
     }
-  }, [hitList, searchWord]);
+  }, [hitLength, searchWord]);
 
   return (
     <>
-      <Pagination
-        count={10}
-        color="primary"
-        variant="outlined"
-        shape="rounded"
-      />
+      <ListPagination />
       <List
         component="nav"
         subheader={<ListSubheader component="div">{subheader}</ListSubheader>}
+        style={{ maxHeight: "320px", overflow: "scroll" }}
       >
         {links}
       </List>
@@ -69,7 +64,7 @@ const SearchResultScreen = ({ hitList, searchWord }) => {
 };
 
 SearchResultScreen.propTypes = {
-  hitList: PropTypes.arrayOf(
+  pageContents: PropTypes.arrayOf(
     PropTypes.shape({
       dataAdded: PropTypes.number,
       id: PropTypes.string.isRequired,
@@ -78,6 +73,7 @@ SearchResultScreen.propTypes = {
       title: PropTypes.string.isRequired
     })
   ).isRequired,
+  hitLength: PropTypes.number.isRequired,
   searchWord: PropTypes.string.isRequired
 };
 
