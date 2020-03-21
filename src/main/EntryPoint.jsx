@@ -44,17 +44,17 @@ const entry = () => {
       <ConnectedRouter history={history}>
         <Switch>
           <Route path="/" exact>
-            <div style={{ minWidth: 340 }}>
+            <div style={{ minWidth: 340, maxWidth: 640, width: "100%" }}>
               <SearchScreen />
             </div>
           </Route>
           <Route path="/search">
-            <div id="aaa" style={{ minWidth: 340 }}>
+            <div style={{ minWidth: 340, maxWidth: 640, width: "100%" }}>
               <SearchResultScreen />
             </div>
           </Route>
           <Route path="/bookmarks">
-            <div id="ttt" style={{ minWidth: 340 }}>
+            <div style={{ minWidth: 340, maxWidth: 640, width: "100%" }}>
               bookmarks
             </div>
           </Route>

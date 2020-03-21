@@ -21,8 +21,8 @@ export default function bookmarkReducer(state = initialState, action) {
     }
 
     case SEARCH_FOR_BOOKMARKS: {
-      const { searchWord, hitList } = action;
-      return { ...state, searchWord, hitList };
+      const { searchWord, hitList, pageNum } = action;
+      return { ...state, searchWord, hitList, pageNum };
     }
 
     case SET_PAGE_NUMBER: {

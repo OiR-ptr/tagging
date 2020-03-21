@@ -26,7 +26,9 @@ export function loadedBookmarksEvent(bookmarks) {
 
 export function searchForBookmarksEvent(bookmarks, searchWord) {
   const searched = bookmarks.filter(bookmark => {
-    if (String.prototype.startsWith.call(bookmark.title, searchWord)) {
+    const lowerTitle = String.prototype.toLowerCase.apply(bookmark.title);
+    const lowerSearchWord = String.prototype.toLowerCase.apply(searchWord);
+    if (String.prototype.indexOf.call(lowerTitle, lowerSearchWord) !== -1) {
       return bookmark;
     }
     return undefined;
@@ -35,7 +37,8 @@ export function searchForBookmarksEvent(bookmarks, searchWord) {
   return {
     type: SEARCH_FOR_BOOKMARKS,
     searchWord,
-    hitList: searched
+    hitList: searched,
+    pageNum: 1
   };
 }
 

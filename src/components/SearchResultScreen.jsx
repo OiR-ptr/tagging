@@ -4,12 +4,16 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListSubheader from "@material-ui/core/ListSubheader";
-import { Typography } from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
+import Divider from "@material-ui/core/Divider";
+import ChipInput from "material-ui-chip-input";
 import ListPagination from "../containers/ListPaginationContainer";
 
 function ListItemLink(properties) {
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  return <ListItem button component="a" {...properties} />;
+  return (
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <ListItem button component="div" alignItems="flex-start" {...properties} />
+  );
 }
 
 const updateTab = url => {
@@ -25,17 +29,23 @@ const SearchResultScreen = ({ pageContents, hitLength, searchWord }) => {
   );
 
   React.useEffect(() => {
-    const results = pageContents.map(item => {
-      return (
-        <ListItemLink
-          href={item.url}
-          key={item.id}
-          onClick={() => updateTab(item.url)}
-        >
-          <ListItemText primary={item.title} secondary="nantekotoda" />
+    const results = pageContents.reduce((previous, current) => {
+      previous.push(
+        <ListItemLink key={current.id} onClick={() => updateTab(current.url)}>
+          <ListItemText primary={current.title} />
         </ListItemLink>
       );
-    });
+      previous.push(
+        <ChipInput
+          onChange={e => {
+            console.log(`currentItem: ${current.title}, ${e}`);
+          }}
+        />
+      );
+      previous.push(<Divider component="li" />);
+      return previous;
+    }, []);
+    console.log(results);
     setLinks(results);
   }, [pageContents]);
 
