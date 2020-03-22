@@ -22,7 +22,13 @@ const updateTab = url => {
   }
 };
 
-const SearchResultScreen = ({ pageContents, hitLength, searchWord }) => {
+const SearchResultScreen = ({
+  pageContents,
+  hitLength,
+  searchWord,
+  updateContentTag,
+  tagMap
+}) => {
   const [links, setLinks] = React.useState([]);
   const [subheader, setSubheader] = React.useState(
     <Typography>none</Typography>
@@ -42,8 +48,19 @@ const SearchResultScreen = ({ pageContents, hitLength, searchWord }) => {
       previous.push(
         <ChipInput
           key={key}
-          onChange={e => {
-            console.log(`currentItem: ${current.title}, ${e}`);
+          value={tagMap && tagMap[current.id]}
+          onAdd={chip => {
+            const tags = tagMap ? tagMap[current.id] : [];
+            tags.push(chip);
+            updateContentTag(current.id, tags);
+          }}
+          onDelete={(_, index) => {
+            const tags = tagMap ? tagMap[current.id] : [];
+            tags.splice(index, 1);
+            updateContentTag(current.id, tags);
+          }}
+          onChange={chips => {
+            updateContentTag(current.id, chips);
           }}
         />
       );
@@ -53,7 +70,7 @@ const SearchResultScreen = ({ pageContents, hitLength, searchWord }) => {
       return previous;
     }, []);
     setLinks(results);
-  }, [pageContents]);
+  }, [pageContents, updateContentTag]);
 
   React.useEffect(() => {
     if (hitLength !== 0 || searchWord) {
@@ -90,7 +107,9 @@ SearchResultScreen.propTypes = {
     })
   ).isRequired,
   hitLength: PropTypes.number.isRequired,
-  searchWord: PropTypes.string.isRequired
+  searchWord: PropTypes.string.isRequired,
+  tagMap: PropTypes.shape().isRequired,
+  updateContentTag: PropTypes.func.isRequired
 };
 
 export default SearchResultScreen;

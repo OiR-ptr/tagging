@@ -10,7 +10,13 @@ import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Search from "@material-ui/icons/Search";
 
-const SearchScreen = ({ bookmarks, loadBookmarks, searchForBookmark }) => {
+const SearchScreen = ({
+  bookmarks,
+  tagMap,
+  loadBookmarks,
+  searchForBookmark,
+  searchForTag
+}) => {
   const [searchText, setSearchText] = React.useState("");
   const [whereToSearch, setWhereToSearch] = React.useState("Bookmarks");
 
@@ -61,6 +67,9 @@ const SearchScreen = ({ bookmarks, loadBookmarks, searchForBookmark }) => {
           if (whereToSearch === "Bookmarks") {
             searchForBookmark(bookmarks, searchText);
           }
+          if (whereToSearch === "Tags") {
+            searchForTag(bookmarks, tagMap, searchText);
+          }
         }}
       >
         検索
@@ -70,10 +79,11 @@ const SearchScreen = ({ bookmarks, loadBookmarks, searchForBookmark }) => {
 };
 
 SearchScreen.propTypes = {
-  // eslint-disable-next-line
-  bookmarks: PropTypes.any.isRequired,
+  bookmarks: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  tagMap: PropTypes.shape().isRequired,
   loadBookmarks: PropTypes.func.isRequired,
-  searchForBookmark: PropTypes.func.isRequired
+  searchForBookmark: PropTypes.func.isRequired,
+  searchForTag: PropTypes.func.isRequired
 };
 
 export default SearchScreen;

@@ -3,12 +3,14 @@ import { push } from "connected-react-router";
 import SearchScreen from "../components/SearchScreen";
 import {
   loadedBookmarksEvent,
-  searchForBookmarksEvent
+  searchForBookmarksEvent,
+  searchForTagsEvent
 } from "../actions/BookmarkActions";
 
 function mapStateToProps(state) {
   return {
-    bookmarks: state.bookmark.bookmarks
+    bookmarks: state.bookmark.bookmarks,
+    tagMap: state.bookmark.tagMap
   };
 }
 
@@ -34,7 +36,8 @@ function mapDispatchToProps(dispatch) {
       dispatch(push("/search"));
     },
     // eslint-disable-next-line
-    searchForTag(bookmarks, searchText) {
+    searchForTag(bookmarks, tagMap, searchText) {
+      dispatch(searchForTagsEvent(bookmarks, tagMap, searchText));
       dispatch(push("/search"));
     }
   };
