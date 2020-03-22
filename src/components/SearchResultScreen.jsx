@@ -29,23 +29,29 @@ const SearchResultScreen = ({ pageContents, hitLength, searchWord }) => {
   );
 
   React.useEffect(() => {
+    let key = 0;
     const results = pageContents.reduce((previous, current) => {
+      key += 1;
       previous.push(
-        <ListItemLink key={current.id} onClick={() => updateTab(current.url)}>
+        <ListItemLink key={key} onClick={() => updateTab(current.url)}>
           <ListItemText primary={current.title} />
         </ListItemLink>
       );
+
+      key += 1;
       previous.push(
         <ChipInput
+          key={key}
           onChange={e => {
             console.log(`currentItem: ${current.title}, ${e}`);
           }}
         />
       );
-      previous.push(<Divider component="li" />);
+
+      key += 1;
+      previous.push(<Divider key={key} component="li" />);
       return previous;
     }, []);
-    console.log(results);
     setLinks(results);
   }, [pageContents]);
 
