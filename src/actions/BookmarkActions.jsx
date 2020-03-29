@@ -1,5 +1,6 @@
 export const LOADED_BOOKMARKS = "LOADED_BOOKMARKS";
 export const SEARCH_FOR_BOOKMARKS = "SEARCH_FOR_BOOKMARKS";
+export const SEARCH_FOR_TITLES = "SEARCH_FOR_TITLES";
 export const SEARCH_FOR_TAGS = "SEARCH_FOR_TAGS";
 export const SET_PAGE_NUMBER = "SET_PAGE_NUMBER";
 export const SET_CONTENT_TAGS = "SET_CONTENT_TAGS";
@@ -37,10 +38,24 @@ export function loadedBookmarksEvent(bookmarks) {
 
 /**
  * ブックマーク内検索イベント
+ * @param {String} searchWord 検索文字列
+ * @param {Array} hitList 検索結果配列
+ */
+export function searchForBookmarksEvent(searchWord, hitList) {
+  return {
+    type: SEARCH_FOR_BOOKMARKS,
+    searchWord,
+    hitList,
+    pageNum: 1
+  };
+}
+
+/**
+ * ブックマーク内検索イベント
  * @param {Array} bookmarks ブックマークデータ
  * @param {String} searchWord 検索文字列
  */
-export function searchForBookmarksEvent(bookmarks, searchWord) {
+export function searchForTitlesEvent(bookmarks, searchWord) {
   const searched = bookmarks.filter(bookmark => {
     const lowerTitle = String.prototype.toLowerCase.apply(bookmark.title);
     const lowerSearchWord = String.prototype.toLowerCase.apply(searchWord);
@@ -51,7 +66,7 @@ export function searchForBookmarksEvent(bookmarks, searchWord) {
   });
 
   return {
-    type: SEARCH_FOR_BOOKMARKS,
+    type: SEARCH_FOR_TITLES,
     searchWord,
     hitList: searched,
     pageNum: 1

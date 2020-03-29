@@ -4,6 +4,7 @@ import SearchScreen from "../components/SearchScreen";
 import {
   loadedBookmarksEvent,
   searchForBookmarksEvent,
+  searchForTitlesEvent,
   searchForTagsEvent
 } from "../actions/BookmarkActions";
 
@@ -32,10 +33,27 @@ function mapDispatchToProps(dispatch) {
       }
     },
     searchForBookmark(bookmarks, searchText) {
-      dispatch(searchForBookmarksEvent(bookmarks, searchText));
+      if (chrome.bookmarks) {
+        let searched = [];
+        chrome.bookmarks.search(searchText, results => {
+          searched = bookmarks.filter(item => {
+            return results.find(result => {
+              return result.id === item.id;
+            });
+          });
+
+          dispatch(searchForBookmarksEvent(searchText, searched));
+          dispatch(push("/search"));
+        });
+      }
+
+      dispatch(searchForBookmarksEvent(searchText, []));
       dispatch(push("/search"));
     },
-    // eslint-disable-next-line
+    searchForTitles(bookmarks, searchText) {
+      dispatch(searchForTitlesEvent(bookmarks, searchText));
+      dispatch(push("/search"));
+    },
     searchForTag(bookmarks, tagMap, searchText) {
       dispatch(searchForTagsEvent(bookmarks, tagMap, searchText));
       dispatch(push("/search"));

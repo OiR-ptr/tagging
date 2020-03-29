@@ -13,6 +13,7 @@ import bookmarkReducer from "../reducers/BookmarkReducers";
 import SearchScreen from "../containers/SearchScreenContainer";
 import SearchResultScreen from "../containers/SearchResultScreenContainer";
 import ApplicationNav from "../containers/ApplicationNavContainer";
+import BookmarkScreen from "../components/BookmarkScreen";
 
 const createRootReducer = history =>
   combineReducers({
@@ -55,7 +56,7 @@ const entry = () => {
           </Route>
           <Route path="/bookmarks">
             <div style={{ minWidth: 340, maxWidth: 640, width: "100%" }}>
-              bookmarks
+              <BookmarkScreen />
             </div>
           </Route>
         </Switch>

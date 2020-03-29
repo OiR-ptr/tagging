@@ -1,6 +1,7 @@
 import {
   LOADED_BOOKMARKS,
   SEARCH_FOR_BOOKMARKS,
+  SEARCH_FOR_TITLES,
   SEARCH_FOR_TAGS,
   SET_PAGE_NUMBER,
   SET_CONTENT_TAGS
@@ -24,6 +25,7 @@ export default function bookmarkReducer(state = initialState, action) {
     }
 
     case SEARCH_FOR_TAGS:
+    case SEARCH_FOR_TITLES:
     case SEARCH_FOR_BOOKMARKS: {
       const { searchWord, hitList, pageNum } = action;
       return { ...state, searchWord, hitList, pageNum };

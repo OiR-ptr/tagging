@@ -15,6 +15,7 @@ const SearchScreen = ({
   tagMap,
   loadBookmarks,
   searchForBookmark,
+  searchForTitles,
   searchForTag
 }) => {
   const [searchText, setSearchText] = React.useState("");
@@ -56,7 +57,11 @@ const SearchScreen = ({
               control={<Radio />}
               label="Bookmarks"
             />
-
+            <FormControlLabel
+              value="Titles"
+              control={<Radio />}
+              label="Titles"
+            />
             <FormControlLabel value="Tags" control={<Radio />} label="Tags" />
           </RadioGroup>
         </FormControl>
@@ -66,6 +71,9 @@ const SearchScreen = ({
         onClick={() => {
           if (whereToSearch === "Bookmarks") {
             searchForBookmark(bookmarks, searchText);
+          }
+          if (whereToSearch === "Titles") {
+            searchForTitles(bookmarks, searchText);
           }
           if (whereToSearch === "Tags") {
             searchForTag(bookmarks, tagMap, searchText);
@@ -83,6 +91,7 @@ SearchScreen.propTypes = {
   tagMap: PropTypes.shape().isRequired,
   loadBookmarks: PropTypes.func.isRequired,
   searchForBookmark: PropTypes.func.isRequired,
+  searchForTitles: PropTypes.func.isRequired,
   searchForTag: PropTypes.func.isRequired
 };
 
